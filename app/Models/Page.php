@@ -10,7 +10,7 @@ class Page extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'sub_title', 'main_image', 'description',
+        'title', 'sub_title', 'main_image', 'description','sub_menus_id','menu_id'
     ];
 
     public function images()
@@ -21,5 +21,9 @@ class Page extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class,'page_tags','page_id','tag_id','id','id');
+    }
+
+    public function menu(){
+        return $this->hasOne(Menu::class);
     }
 }

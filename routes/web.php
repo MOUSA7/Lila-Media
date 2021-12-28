@@ -12,6 +12,8 @@ use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\ViewController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +33,19 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Route::get('/dashbourd', function () {
-//     dd('hello');
-//     return view('control-panel.dashboard');
-// });
+Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+{
+    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+    Route::get('welcome', function()
+    {
+        return View::make('dashboard');
+    });
+
+    Route::get('test',function(){
+        return View::make('test');
+    });
+});
+
 
 // Control Panel Routs
 Route::middleware('auth')
@@ -61,7 +72,10 @@ Route::middleware('auth')
             Route::resource('pages', PageController::class);
             Route::resource('blogs', BlogController::class);
             Route::resource('teams', TeamController::class);
+            Route::resource('menus', \App\Http\Controllers\MenuController::class);
+            Route::resource('sub-menus', \App\Http\Controllers\ControlPanel\SubMenuController::class);
 
+            Route::get('sub-menu/ajax/{id}',[PageController::class,'getSubMenus'])->name('subMenu.ajax');
         });
 
 

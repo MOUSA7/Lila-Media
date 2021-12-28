@@ -51,6 +51,7 @@ class WebsitController extends Controller
                 'instagram' => 'nullable |url',
                 'linkedin' => 'nullable |url',
                 'behance' => 'nullable |url',
+                'url' => 'required|url'
             ]);
             $data = $request->all();
 
@@ -85,6 +86,7 @@ class WebsitController extends Controller
                 'instagram' => 'nullable |url',
                 'linkedin' => 'nullable |url',
                 'behance' => 'nullable |url',
+                'url'  => 'required|url'
             ]);
             $data = $request->all();
 
