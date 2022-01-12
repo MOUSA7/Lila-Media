@@ -167,6 +167,33 @@
 										</div>
                                         {{-- end website behance --}}
 
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="slider_tile" class="form-label">{{ __('Slider Title') }}</label>
+                                                <input type="text" id="slider_tile" name="slider_tile" value="{{ old('slider_tile',($website->slider_tile ?? ' ')) }}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="slider_description" class="form-label">{{ __('Slider Description') }}</label>
+                                                <textarea class="form-control" name="slider_description" >{{old('slider_description',($website->slider_description))}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="service_tile" class="form-label">{{ __('Service Title') }}</label>
+                                                <input type="text" id="service_tile" name="service_tile" value="{{ old('service_tile',($website->seo_keyword ?? ' ')) }}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="service_description" class="form-label">{{ __('Service Description') }}</label>
+                                                <textarea class="form-control" name="service_description">{{old('service_description',($website->service_description))}}</textarea>
+                                            </div>
+                                        </div>
+
+
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
 											<button type="submit" class="btn btn-light">{{ __('Cencel') }}</button>

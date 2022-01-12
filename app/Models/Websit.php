@@ -11,7 +11,9 @@ class Websit extends Model
     use HasFactory;
 
     protected $fillable = [
-        'websit_title','url', 'favicon_image', 'logo', 'seo_keyword', 'phone' ,'email' ,'telephone_number'
+        'websit_title','slider_tile','slider_description',
+        'service_tile','service_description','url', 'favicon_image',
+        'logo', 'seo_keyword', 'phone' ,'email' ,'telephone_number'
         ,'facebook','twitter','youtube','instagram','whatsapp','linkedin','behance'
     ];
 

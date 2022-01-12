@@ -12,8 +12,6 @@ use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\ViewController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +19,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loroaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
 */
@@ -30,22 +28,24 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 //     return view('frontend.index');
 // });
 
+//Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+//{
+//    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+//    Route::get('welcome', function()
+//    {
+//        return View::make('dashboard');
+//    });
+//
+//    Route::get('test',function(){
+//        return View::make('test');
+//    });
+//});
 
 
-
-Route::group(['prefix' => LaravelLocalization::setLocale()], function()
-{
-    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
-    Route::get('welcome', function()
-    {
-        return View::make('dashboard');
-    });
-
-    Route::get('test',function(){
-        return View::make('test');
-    });
-});
-
+// Route::get('/dashbourd', function () {
+//     dd('hello');
+//     return view('control-panel.dashboard');
+// });
 
 // Control Panel Routs
 Route::middleware('auth')
@@ -76,6 +76,8 @@ Route::middleware('auth')
             Route::resource('sub-menus', \App\Http\Controllers\ControlPanel\SubMenuController::class);
 
             Route::get('sub-menu/ajax/{id}',[PageController::class,'getSubMenus'])->name('subMenu.ajax');
+            Route::resource('work-steps', \App\Http\Controllers\ControlPanel\WorkStepsController::class);
+
         });
 
 
@@ -88,7 +90,8 @@ Route::as('view.')
         Route::get('blogs/{blog}',[ViewController::class, 'viewSingleBlog'])->name('single.blog');
         Route::get('projects/{project}',[ViewController::class, 'viewSingleProject'])->name('single.project');
         Route::get('about/{page}',[ViewController::class,'viewAbout'])->name('about');
-        Route::get('contact',[ContactController::class,'viewContact'])->name('contact');
+        Route::get('about',[ViewController::class,'about'])->name('about-us');
+        Route::get('contact',[ViewController::class,'contact_us'])->name('contact');
         Route::post('contact',[ContactController::class,'store'])->name('contact.store');
         Route::post('new-order',[OrderController::class,'store'])->name('new.order');
     });

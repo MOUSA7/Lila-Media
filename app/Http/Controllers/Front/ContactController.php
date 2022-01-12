@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Models\Service;
 use App\Models\User;
 use App\Models\Websit;
 use App\Notifications\NewOrderNotification;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Throwable;
 
 class ContactController extends Controller
@@ -17,6 +20,7 @@ class ContactController extends Controller
     public function viewContact()
     {
         $setting = Websit::first();
+
         return view('frontend.contact',[
             'setting' => $setting,
         ]);
@@ -33,6 +37,7 @@ class ContactController extends Controller
             //User::where('id',1)->notify(new NewOrderNotification());
 
             DB::commit();
+
         }catch(Throwable $e){
             DB::rollBack();
             return redirect()->back()->with('error','Operation Failed!');
@@ -41,7 +46,11 @@ class ContactController extends Controller
 
         if($contact)
         {
-            return redirect()->back()->with('success','the message has been sent successfully');
+            $notification = array(
+                'message'=>'Send Information Successfully ',
+                'alert-type'=>'success'
+            );
+            return redirect()->back()->with($notification);
         }
     }
 

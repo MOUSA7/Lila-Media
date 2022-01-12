@@ -22,9 +22,23 @@ class ViewController extends Controller
         ]);
     }
 
+    public function contact_us()
+    {
+        $services = Service::all();
+
+        return view('frontend.contact_us',[
+            'services'=>$services
+        ]);
+    }
+
+    public function about()
+    {
+        return view('frontend.about');
+    }
+
     public function viewProjects()
     {
-        $projects = Project::paginate();
+        $projects = Project::paginate(2);
 
         return view('frontend.projects',[
             'projects' => $projects
@@ -74,6 +88,6 @@ class ViewController extends Controller
         ]);
     }
 
-   
+
 
 }

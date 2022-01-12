@@ -50,6 +50,10 @@ class WebsitController extends Controller
                 'whatsapp' => 'nullable |url',
                 'instagram' => 'nullable |url',
                 'linkedin' => 'nullable |url',
+                'slider_tile' => 'nullable |string',
+                'slider_description' => 'nullable |string',
+                'service_tile' => 'nullable |string',
+                'service_description' => 'nullable |string',
                 'behance' => 'nullable |url',
                 'url' => 'required|url'
             ]);
